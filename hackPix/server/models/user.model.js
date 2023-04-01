@@ -6,7 +6,8 @@ const User = mongoose.model(
         username: String,
         robotLevel: Number,
         cluodLevel:Number,
-        rainbowLevel:Number
+        rainbowLevel:Number,
+        upgradeEnd:Date
 
     }
 );
