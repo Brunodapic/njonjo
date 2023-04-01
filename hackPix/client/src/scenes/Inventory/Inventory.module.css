@@ -1,0 +1,109 @@
+/* Inventory_modal */
+
+/* Auto layout */
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 44px;
+    gap: 44px;
+
+    position: absolute;
+    width: 810px;
+    height: 1138.21px;
+    left: 268px;
+    top: 94px;
+
+    border: 9px solid #8664FF;
+    border-radius: 12px;
+
+}
+
+.inventoryHeader{
+    /* Inventory_header */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px;
+    gap: 172px;
+
+    width: 722px;
+    height: 57px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.assetContainer{
+    /* Frame 139 */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 24px;
+
+    width: 722px;
+    height: 949.21px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.asset{
+    /* Asset */
+
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 22px 40px;
+    gap: 40px;
+
+    width: 722px;
+    height: 270.3px;
+
+    background: rgba(80, 178, 220, 0.1);
+    border: 7px solid #50B2DC;
+    border-radius: 10px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.robot{
+    /* Robot */
+
+
+    width: 220px;
+    height: 254.09px;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}

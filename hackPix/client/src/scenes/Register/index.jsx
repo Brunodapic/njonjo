@@ -37,9 +37,6 @@ const Register = () => {
         }
     }
 
-    // useEffect(() => {
-    //     getUser();
-    // }, [])
 
     return (
         <div>
