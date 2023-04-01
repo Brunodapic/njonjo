@@ -130,13 +130,19 @@ export const loginUser = async (req, res) => {
   const findeUser = await User.findOne({
     username:usernameLower,
   });
-  console.log(findeUser._id);
-  const resData = {
-    id: findeUser._id,
-    username: findeUser.username,
-  };
+  if(findeUser===null){
+    const error = new Err(400, "Username error");
+    throw error;
+  }else{
+    console.log(findeUser._id);
+    const resData = {
+      id: findeUser._id,
+      username: findeUser.username,
+    };
+  
+    res.json(resData);
+  }
 
-  res.json(resData);
 };
 
 export const registerUser = async (req, res) => {
