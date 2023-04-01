@@ -5,5 +5,5 @@ export const robotUpgrade = (robotLevel,cluodLevel,rainbowLevel) =>{
 
 
 export const cluodLevelUpgrade = (robotLevel,cluodLevel) =>{
-    return (cluodLevel*60*1000)/(robotLevel**robotLevel)
+    return (cluodLevel*60*1000)/(2**robotLevel)
 }
