@@ -1,5 +1,5 @@
 import User from "../models/user.model";
-import { robotUpgrade } from "../utils/upgradeTime.util";
+import { robotUpgrade,cluodLevelUpgrade } from "../utils/upgradeTime.util";
 import { Err } from "../utils/error.util";
 
 export const getUserScoreboard = async (req, res) => {
@@ -55,7 +55,7 @@ export const updateUserRobot = async (req, res) => {
         upgradeEnd: now + addTime,
       });
       console.log(updateRobot);
-      res.sendStatus(200);
+      res.json({upgradeEnd: now + addTime});
     } else {
       const error = new Err(400, "Upgrade cant happen");
       throw error;
@@ -83,7 +83,7 @@ export const updateUserCloud = async (req, res) => {
         upgradeEnd: now + addTime,
       });
       console.log(updateRobot);
-      res.sendStatus(200);
+      res.json({upgradeEnd: now + addTime});
     } else {
       const error = new Err(400, "Upgrade cant happen");
       throw error;
@@ -107,11 +107,11 @@ export const updateUserRainbow = async (req, res) => {
     const timeCheck = findeUser.upgradeEnd.getTime() < now;
     if (timeCheck) {
       const updateRobot = await User.findByIdAndUpdate(id, {
-        rainbowLevel: rainbowLevel.cluodLevel + 1,
+        rainbowLevel: findeUser.rainbowLevel + 1,
         upgradeEnd: now + addTime,
       });
       console.log(updateRobot);
-      res.sendStatus(200);
+      res.json({upgradeEnd: now + addTime});
     } else {
       const error = new Err(400, "Upgrade cant happen");
       throw error;
@@ -130,13 +130,19 @@ export const loginUser = async (req, res) => {
   const findeUser = await User.findOne({
     username:usernameLower,
   });
-  console.log(findeUser._id);
-  const resData = {
-    id: findeUser._id,
-    username: findeUser.username,
-  };
+  if(findeUser===null){
+    const error = new Err(400, "Username error");
+    throw error;
+  }else{
+    console.log(findeUser._id);
+    const resData = {
+      id: findeUser._id,
+      username: findeUser.username,
+    };
+  
+    res.json(resData);
+  }
 
-  res.json(resData);
 };
 
 export const registerUser = async (req, res) => {
@@ -157,6 +163,7 @@ export const registerUser = async (req, res) => {
             robotLevel: 1,
             cluodLevel: 0,
             rainbowLevel: 0,
+            upgradeEnd: Date.now()
           });
           const reqUser = await newUser.save();
           console.log(reqUser);
