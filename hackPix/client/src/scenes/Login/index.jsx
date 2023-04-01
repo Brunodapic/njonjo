@@ -23,7 +23,7 @@ const Login = () => {
             const user = await axios.post('api/user/login', {username})
             if(user){
                 console.log("Logging in user ", user);
-                localStorage.setItem("id", "1");
+                localStorage.setItem("id", user.data.id);
                 navigate('/')
             }else{
                 console.log("No such user");
