@@ -5,7 +5,7 @@ const App = () => {
   return (
     <div className={styles.app}>
       <Navigation />
-      This is where we start
+      
     </div>
   );
 }
