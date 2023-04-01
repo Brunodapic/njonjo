@@ -113,3 +113,29 @@ export const loginUser = async (req, res) => {
 
   res.json(resData);
 };
+
+export const registerUser = async (req, res) => {
+    const { username } = req.body;
+    const usernameLower=username.toLowerCase()
+    if (username === "") {
+      const error = new Err(400, "name is required");
+      throw error;
+    }
+    const findeUser = await User.findOne({username:usernameLower});
+    console.log(findeUser)
+    if(findeUser){
+        const error = new Err(400, "Username is in use");
+        throw error;
+    }else{
+        const newUser = new User({
+            username:usernameLower,
+            robotLevel: 1,
+            cluodLevel: 0,
+            rainbowLevel: 0,
+          });
+          const reqUser = await newUser.save();
+          console.log(reqUser);
+          res.json({id:reqUser._id});
+    }
+
+  };
