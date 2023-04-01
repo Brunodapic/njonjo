@@ -12,20 +12,21 @@ const Inventory = () => {
     const [cloudLevel, setCloudLevel] = useState(0);
     const [rainbowLevel, setRainbowLevel] = useState(0);
 
+    const id = localStorage.getItem("id");
 
     const assets = [
         '/robot-1.svg',
+        '/Cloudc.svg',
         '/Rainbowc.svg',
-        '/Cloudc.svg'
     ];
 
-    // const getAssets = async () =>{
-
-    // }
-
-    // useEffect(() => {
-    //     getAssets();
-    // })
+    const getAssets = async () =>{
+        const user = await axios.get('api/user/' + id);
+        console.log("user is ", user);
+        setRobotLevel(user.robotLevel);
+        setCloudLevel(user.cloudLevel);
+        setRainbowLevel(user.rainbowLevel);
+    }
     
     return (
         <form className={styles.form}>
@@ -35,12 +36,21 @@ const Inventory = () => {
                 </div>
                 <div className={styles.asset}>
                     <img className={styles.robot} src={assets[0]}/>
-                </div>
-                <div className={styles.asset}>
-                    <img className={styles.robot} src={assets[2]}/>
+                    <div>
+                        Level {robotLevel}
+                    </div>
                 </div>
                 <div className={styles.asset}>
                     <img className={styles.robot} src={assets[1]}/>
+                    <div>
+                        Level {cloudLevel}
+                    </div>
+                </div>
+                <div className={styles.asset}>
+                    <img className={styles.robot} src={assets[2]}/>
+                    <div>
+                        Level {rainbowLevel}
+                    </div>
                 </div>
             </div>
 

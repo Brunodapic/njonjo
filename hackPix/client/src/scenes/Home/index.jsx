@@ -3,11 +3,9 @@ import { memo, useState } from "react";
 import Robot from "../../components/Robot";
 
 const Home = () => {
-    const [robots, setRobots] = useState([]);
+    const [scoreBoard, setScoreboard] = useState('');
 
-    if (!robots) {
-        return (<div>Loading...</div>);
-    }
+    
 
     return (
         <div>
