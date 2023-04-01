@@ -1,32 +1,59 @@
-import User from '../models/user.model';
+import User from "../models/user.model";
 
+export const getUserInventory = async (req, res) => {
+  const id = req.params.id;
+  const findeUser = await User.findById(id);
 
-export const getUser = (req, res) => {
-    res.sendStatus(200);
-}
+  if (!findeUser) {
+    res.sendStatus(404);
+  } else {
+    res.json({
+      findeUser: robotLevel,
+      findeUser: cluodLevel,
+      findeUser: rainbowLevel,
+    });
+  }
+};
 
+export const updateUserInventory = async (req, res) => {
+  const id = req.params.id;
 
-export const getUserInventory = (req, res) => {
-    res.sendStatus(200);
-}
+  res.sendStatus(200);
+};
+export const registerUser = async (req, res) => {
+  const { username } = req.body;
 
+  if (username === "") {
+    const error = new Err(400, "name is required");
+    throw error;
+  }
 
+  const newUser = new User({
+    username,
+    robotLevel: 1,
+    cluodLevel: 0,
+    rainbowLevel: 0,
+  });
+  const reqUser = await newUser.save();
+  console.log(reqUser);
+  res.sendStatus(200);
+};
 
-export const updateUserInventory = (req, res) => {
-    res.sendStatus(200);
-}
-export const registerUser = (req, res) => {
-    res.sendStatus(200);
+export const loginUser = async (req, res) => {
+  const { username } = req.body;
 
-    //const { username } = req.body;
+  if (username === "") {
+    const error = new Err(400, "name is required");
+    throw error;
+  }
+  const findeUser = await User.findOne({
+    username
+  });
+  console.log(findeUser._id);
+  const resData= {
+    id:findeUser._id,
+    username:findeUser.username
+  }
 
-    //const newUser = new User({ username });
-    //await newRobot.save();
-
-    //res.sendStatus(204);
-    //res.send('This is a GET /api/user route');
-}
-
-export const loginUser = (req, res) => {
-    res.sendStatus(200);
-}
+  res.json(resData);
+};

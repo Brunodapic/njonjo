@@ -4,10 +4,12 @@ const User = mongoose.model(
     'User',
     {
         username: String,
-        robotLevel:Number,
+        robotLevel: Number,
         cluodLevel:Number,
         rainbowLevel:Number
+
     }
 );
 
 export default User;
+
