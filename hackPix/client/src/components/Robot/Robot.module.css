@@ -1,0 +1,39 @@
+
+.tile {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    width: 700px;
+    border-radius: 12px;
+    background: #8664FF;
+}
+
+.tile:hover {
+    background: #533EAC;
+}
+
+.tile + .tile {
+    margin-top: 16px;
+}
+
+.robotContainer {
+    height: 150px;
+    width: 150px;
+    border-radius: 12px;
+    display: flex;
+    background: #FFC600;
+    justify-content: center;
+    align-items: center;
+}
+
+.robot {
+    padding: 40px;
+    height: 100px;
+    width: 100px;
+}
+
+.name {
+    padding-left: 16px;
+    font-weight: bold;
+    font-size: 24px;
+}

@@ -1,0 +1,14 @@
+.input {
+    color: #8664FF;
+    padding: 16px 24px;
+    border-radius: 12px;
+    border: 1px solid #8664FF;
+    outline: none;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 16px;
+}
+
+.errors {
+    border: 1px solid #F5325C;
+}

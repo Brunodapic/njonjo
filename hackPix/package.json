@@ -1,0 +1,15 @@
+{
+  "author": "Pixion",
+  "name": "jsschool-2023",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd client && npm install && npm run build && cd .. && cd server && npm install && cd ..",
+    "start": "cd server && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://Soudny@github.com/pixionco/jsschool-2023.git"
+  }
+}
