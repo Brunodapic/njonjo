@@ -28,8 +28,8 @@ const Register = () => {
     const onSubmit = async () => {
         try {
             
-            await axios.post('api/user/register', {username});
-            localStorage.setItem("id", "1");
+            const req = await axios.post('api/user/register', {username});
+            localStorage.setItem("id", req.data.id);
             console.log("Registered user: ", username);
             setIsLoggedIn(true);
             navigate('/login');
