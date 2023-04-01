@@ -14,3 +14,4 @@ export const getAllRobots = async (req, res) => {
 
     res.json(allRobots);
 }
+
