@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { Link } from "react-router-dom";
 
 import styles from './NavLink.module.css';
 
@@ -6,9 +7,9 @@ const NavLink = (props) => {
     const { label, to } = props;
 
     return (
-        <div className={styles.label}>
+        <Link to={to} className={styles.label}>
             {label}
-        </div>
+        </Link>
     )
 }
 
