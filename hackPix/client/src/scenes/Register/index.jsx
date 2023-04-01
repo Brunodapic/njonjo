@@ -29,6 +29,7 @@ const Register = () => {
         try {
             
             await axios.post('api/user/register', {username});
+            localStorage.setItem("id", "1");
             console.log("Registered user: ", username);
             setIsLoggedIn(true);
             navigate('/login');
@@ -37,9 +38,6 @@ const Register = () => {
         }
     }
 
-    // useEffect(() => {
-    //     getUser();
-    // }, [])
 
     return (
         <div>

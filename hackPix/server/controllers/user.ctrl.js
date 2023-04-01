@@ -48,18 +48,18 @@ export const updateUserRobot = async (req, res) => {
       findeUser.rainbowLevel
     );
     console.log(now, addTime, findeUser.upgradeEnd.getTime());
-    const timeCheck=findeUser.upgradeEnd.getTime()<now+addTime
-    if(timeCheck){
-
-        const updateRobot = await User.findByIdAndUpdate(id, { robotLevel:findeUser.robotLevel + 1,upgradeEnd:now+addTime });
-        console.log(updateRobot);
-        res.sendStatus(200);
-
-    }else{
-        const error = new Err(400, "Upgrade cant happen");
-        throw error;
+    const timeCheck = findeUser.upgradeEnd.getTime() < now;
+    if (timeCheck) {
+      const updateRobot = await User.findByIdAndUpdate(id, {
+        robotLevel: findeUser.robotLevel + 1,
+        upgradeEnd: now + addTime,
+      });
+      console.log(updateRobot);
+      res.sendStatus(200);
+    } else {
+      const error = new Err(400, "Upgrade cant happen");
+      throw error;
     }
-
   }
 };
 
@@ -71,39 +71,64 @@ export const updateUserCloud = async (req, res) => {
     res.sendStatus(404);
   } else {
     const now = Date.now();
+    const addTime = cluodLevelUpgrade(
+      findeUser.robotLevel,
+      findeUser.cluodLevel + 1
+    );
+    console.log(now, addTime, findeUser.upgradeEnd.getTime());
+    const timeCheck = findeUser.upgradeEnd.getTime() < now;
+    if (timeCheck) {
+      const updateRobot = await User.findByIdAndUpdate(id, {
+        cluodLevel: findeUser.cluodLevel + 1,
+        upgradeEnd: now + addTime,
+      });
+      console.log(updateRobot);
+      res.sendStatus(200);
+    } else {
+      const error = new Err(400, "Upgrade cant happen");
+      throw error;
+    }
   }
-  res.sendStatus(200);
 };
 
 export const updateUserRainbow = async (req, res) => {
-  const { username } = req.body;
-
-  if (username === "") {
-    const error = new Err(400, "name is required");
-    throw error;
+  const id = req.params.id;
+  const findeUser = await User.findById({ _id: id });
+  console.log(findeUser);
+  if (!findeUser) {
+    res.sendStatus(404);
+  } else {
+    const now = Date.now();
+    const addTime = cluodLevelUpgrade(
+      findeUser.robotLevel,
+      findeUser.rainbowLevel + 1
+    );
+    console.log(now, addTime, findeUser.upgradeEnd.getTime());
+    const timeCheck = findeUser.upgradeEnd.getTime() < now;
+    if (timeCheck) {
+      const updateRobot = await User.findByIdAndUpdate(id, {
+        rainbowLevel: rainbowLevel.cluodLevel + 1,
+        upgradeEnd: now + addTime,
+      });
+      console.log(updateRobot);
+      res.sendStatus(200);
+    } else {
+      const error = new Err(400, "Upgrade cant happen");
+      throw error;
+    }
   }
-
-  const newUser = new User({
-    username,
-    robotLevel: 1,
-    cluodLevel: 0,
-    rainbowLevel: 0,
-    upgradeEnd: Date.now(),
-  });
-  const reqUser = await newUser.save();
-  console.log(reqUser);
-  res.sendStatus(200);
 };
 
 export const loginUser = async (req, res) => {
-  const { username } = req.body;
+    const { username } = req.body;
+    const usernameLower=username.toLowerCase()
 
   if (username === "") {
     const error = new Err(400, "name is required");
     throw error;
   }
   const findeUser = await User.findOne({
-    username,
+    username:usernameLower,
   });
   console.log(findeUser._id);
   const resData = {
